@@ -1,0 +1,67 @@
+$avatar-width-height: 4rem;
+$white: #fff;
+$gray-400: #cccccc;
+$black: #000;
+$primary: #0066ff;
+$font-weight-bold: 800;
+
+.description {
+  /*  @extend .d-flex;
+    @extend .align-items-center;
+    @extend .mb-4;*/
+  background-color: $white;
+  border-radius: $avatar-width-height;
+  box-shadow: 0.25rem 0.25rem 0.5rem 0 $gray-400;
+  min-width: 30%;
+
+  &__actions {
+    /*    @extend .d-flex;
+        @extend .align-items-center;
+        @extend .justify-content-center;*/
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: $avatar-width-height;
+    height: $avatar-width-height - 0.25rem;
+    visibility: hidden;
+    width: $avatar-width-height - 0.25rem;
+  }
+
+  &__avatar {
+    /*@extend .m-2;*/
+    background-image: url(../assets/img/lucy_l.png);
+    background-position: 0.25rem 0;
+    background-repeat: no-repeat;
+    background-size: 120%;
+    border: 2px solid $primary;
+    border-radius: $avatar-width-height;
+    box-shadow: 0.1rem 0.1rem 0.1rem 0 $gray-400;
+    height: $avatar-width-height;
+    width: $avatar-width-height;
+
+    &:hover > .description__actions {
+      visibility: visible;
+    }
+  }
+
+  &__button {
+    /*    @extend .btn;
+        @extend .btn-sm;
+        @extend .p-0;*/
+background-color: transparent;
+    border-radius: $avatar-width-height;
+    color: $white;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    &:active, &:active:hover,
+      &:focus, &:focus:hover,
+      &:hover {
+      background-color: $black;
+    }
+  }
+
+  &__content {
+    /*@extend .p-3;*/
+    color: $primary;
+    font-weight: $font-weight-bold;
+  }
+}
