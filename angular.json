@@ -121,6 +121,41 @@
           }
         }
       }
+    },
+    "csm-poc-lib": {
+      "root": "projects/csm-poc-lib",
+      "sourceRoot": "projects/csm-poc-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/csm-poc-lib/tsconfig.lib.json",
+            "project": "projects/csm-poc-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/csm-poc-lib/src/test.ts",
+            "tsConfig": "projects/csm-poc-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/csm-poc-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/csm-poc-lib/tsconfig.lib.json",
+              "projects/csm-poc-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "csm-lib"

@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "csm-poc-lib": [
+        "dist/csm-poc-lib"
+      ],
+      "csm-poc-lib/*": [
+        "dist/csm-poc-lib/*"
+      ]
+    }
   }
 }
