@@ -213,7 +213,7 @@ export class ListenService {
   /**
    * onEndHandler that is called after speech recognition.
    *
-   * @param event
+   * @params event
    */
   public onEndHandler(event: any): void {  // Start must occur after the onend function is called
     //    if (!this.setRecognitionRunning()) {

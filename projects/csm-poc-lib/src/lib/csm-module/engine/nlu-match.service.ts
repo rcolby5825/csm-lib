@@ -125,7 +125,8 @@ export class NLUMatchService {
                 }
 
                 // Build strings out of variants
-                alteredText = firstStr + '$' + replacement + secondStr;    // Keeping the '$' separate prevents the $(___) object from being evaluated
+                alteredText = firstStr + '$' + replacement + secondStr;
+                // Keeping the '$' separate prevents the $(___) object from being evaluated
 
                 while (alteredText.indexOf('  ') !== -1) {
                     alteredText = alteredText.replace('  ', ' ');

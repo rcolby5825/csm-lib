@@ -38,6 +38,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-*/package-lock.json
-*/node_modules
+projects/csm-poc-lib/package-lock.json
+projects/csm-poc-lib/node_modules
 *.tgz

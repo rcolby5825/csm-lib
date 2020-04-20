@@ -243,14 +243,15 @@ export class LanguageParserService {
   /**
    * Filter identifiers from identifier mapping.
    *
-   * @param text
-   * @param identifiers
-   * @param identifierMapping
+   * @params text
+   * @params identifiers
+   * @params identifierMapping
    * @params inferenceEngineService
    * @params excludeSource
    * @params identifyAll (optional)
    */
-  public filterIdentifiers(text: string, identifiers: any, identifierMapping: any, inferenceEngineService: InferenceEngineService, excludeSource: string, identifyAll?: boolean): void {
+  public filterIdentifiers(text: string, identifiers: any, identifierMapping: any, inferenceEngineService: InferenceEngineService,
+                           excludeSource: string, identifyAll?: boolean): void {
     for (let i = 0; i < identifiers.length; i++) {
       const identifierJSON = identifiers[i];
       const identifierArray = identifierJSON.identifier;

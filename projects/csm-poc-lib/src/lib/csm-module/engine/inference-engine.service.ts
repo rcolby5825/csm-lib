@@ -151,8 +151,8 @@ export class InferenceEngineService {
   /**
    * Get attribute from key.
    *
-   * @param partialKey
-   * @param targetPacket
+   * @params partialKey
+   * @params targetPacket
    * @returns attribute
    */
   private getAttributeFromPartialKey(partialKey: string, targetPacket: any): string {
@@ -167,7 +167,7 @@ export class InferenceEngineService {
   /**
    * Build identifier mapping.
    *
-   * @param dataRow
+   * @params dataRow
    * @returns identifier mapping
    */
   public buildIdentifierMapping(dataRow: any): any {

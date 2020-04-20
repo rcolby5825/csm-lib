@@ -43,7 +43,7 @@ export class SpeechService {
   /**
    * Set CSMService.
    *
-   * @param _CSMService - CSMService object
+   * @params _CSMService - CSMService object
    */
   public setCSMService(_CSMService: CSMService): void {
     this._CSMService = _CSMService;
@@ -52,9 +52,9 @@ export class SpeechService {
   /**
    * Speak without recognizing responses.
    *
-   * @param text - text to speak
-   * @param responses - ?
-   * @param silent - ?
+   * @params text - text to speak
+   * @params responses - ?
+   * @params silent - ?
    */
   public speakWithNoRecognition(text: any, responses: any, silent: boolean) {
     let silence: boolean = !this._CSMService.isSpeakerOn();

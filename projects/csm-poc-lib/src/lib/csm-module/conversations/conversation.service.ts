@@ -15,7 +15,7 @@ export class ConversationManager {
      * Each conversation will be added to registry in the following format:
      * {
      *      conversation: 'MyNewState',          //'name of CSM state that represents conversation'
-     *      priority: HIGH                      // Priority of conversation. Sub priorities may be indicated by adding 1/10 increments, for ex, MEDIUM + .5
+     *      priority: HIGH  Priority of conversation. Sub priorities may be indicated by adding 1/10 increments, for ex, MEDIUM + .5
      * }
      */
     private conversationRegistry: any = [];
@@ -31,7 +31,7 @@ export class ConversationManager {
      *
      * @param state = CSM state to execute when conversation is executed
      * @param priority = Priority of conversation, HIGH, MEDIUM, LOW. Finer granularity can be added, for ex, HIGH + .5. Default is LOW.
-     * @param repeat = Repeat value. long value represents number of seconds between repeat. Default is undefined which represents "no repeat"
+     * @param repeat =  number of seconds between repeat. Default is undefined which represents "no repeat"
      */
     public registerConversation(conversation: string, priority?: Number, payload?: any): void {
         // Remove events if they have timed out

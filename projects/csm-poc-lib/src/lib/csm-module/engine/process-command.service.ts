@@ -4,7 +4,7 @@ import {StateMachineStackService} from './state-machine-stack.service';
 import {StateMachineService} from './state-machine.service';
 // import will change when interface is moved.
 import {LucySpeech} from '../services/mssql-connect.service';
-import {LucyQandAService} from '../../_integration/services/lucy_services/lucy-q-and-a.service';
+import {LucyQandAService} from '../services/lucy-q-and-a.service';
 
 /**
  * Command processor service.
@@ -548,7 +548,7 @@ export class ProcessCommandService {
   /**
    * Process all speech responses. Use 2 tier approach to respect commands that are marked for processing last.
    *
-   * @param voiceCommands - voice commands to check against state machine commands
+   * @params voiceCommands - voice commands to check against state machine commands
    * any should be changed to boolean (see if works)
    */
   public processAllResponses(voiceCommands: string[]): any {
@@ -576,8 +576,12 @@ export class ProcessCommandService {
       this._StateMachineStackService.setStateMachineState(this._StateMachineService.getStateMachineProcessingStates()[i]);
       this._StateMachineStackService.setStateMachineStateContext(this._StateMachineService.getStateMachineProcessingStatesContext()[i]);
       for (let j = 0; j < voiceCommands.length && !actionExecuted; j++) {
-        actionExecuted = this.processLucySpeechResponse(voiceCommands[j], processLast, this._StateMachineStackService.getStateMachineStateName(), this._StateMachineStackService.getStateMachineStateContext().getName());
-        // actionExecuted = this.processSpecificResponse(voiceCommands[j], processLast, this._StateMachineStackService.getStateMachineStateName(), this._StateMachineStackService.getStateMachineStateContext().getName());
+        actionExecuted = this.processLucySpeechResponse(voiceCommands[j],
+          processLast, this._StateMachineStackService.getStateMachineStateName(),
+          this._StateMachineStackService.getStateMachineStateContext().getName());
+        // actionExecuted = this.processSpecificResponse(voiceCommands[j], processLast,
+        // this._StateMachineStackService.getStateMachineStateName(),
+        // this._StateMachineStackService.getStateMachineStateContext().getName());
       }
     }
     return actionExecuted;
@@ -619,7 +623,8 @@ export class ProcessCommandService {
         actions[i].preprocessed = 'true';
       }
 
-      // Manage 2 phase processing of commands. Any command marked as "processLast" will be processed after all other commands have been processed
+      // Manage 2 phase processing of commands. Any command marked as "processLast" will
+      // be processed after all other commands have been processed
       let response: any;
       // this conditional isn't needed for the help commands.
       if (!processLast && !actions[i].processLast || processLast && actions[i].processLast) {
@@ -768,7 +773,8 @@ export class ProcessCommandService {
   //                   actions[i].preprocessed = 'true';
   //               }
   //
-  //               // Manage 2 phase processing of commands. Any command marked as "processLast" will be processed after all other commands have been processed
+  //               // Manage 2 phase processing of commands. Any command marked as "processLast" will be
+  //               // processed after all other commands have been processed
   //               let response: any;
   //               if (!processLast && !actions[i].processLast || processLast && actions[i].processLast) {
   //                   // Evaluate each command and act if a command is matched
@@ -787,7 +793,8 @@ export class ProcessCommandService {
   //                               this._CSMService.getSpeechService().sendAcceptedResponse(userSays);
   //                           }
   //                           // Got a speech response
-  //                           // if (actions[i].conversation === 'true' && (actions[i].dontShowInTape === undefined || !actions[i].dontShowInTape)) {
+  //                           // if (actions[i].conversation === 'true' &&
+  //                           (actions[i].dontShowInTape === undefined || !actions[i].dontShowInTape)) {
   //                           //   this._CSMService.getSpeechService().sendAcceptedResponse(userSays);
   //                           // }
   //
@@ -947,7 +954,8 @@ export class ProcessCommandService {
           this._CSMService.getListenService().stop();
           this._CSMService.getListenService().setAutoStartRecognition(false);
           this.fCommandHistory = []; // Reset array
-          this._CSMService.getSpeechService().speak('Sorry, I am having a hard time understanding. Can you please spell out the value?', undefined, false, undefined);
+          this._CSMService.getSpeechService().speak('Sorry, I am having a hard time understanding. Can you please spell out the value?',
+            undefined, false, undefined);
           this._CSMService.enterState('enterFieldSpell');
         }
       }
@@ -993,7 +1001,7 @@ export class ProcessCommandService {
   /**
    * Use callback to set final text.
    *
-   * @param text
+   * @params text
    *
    */
   public setFinalText(text: string) {

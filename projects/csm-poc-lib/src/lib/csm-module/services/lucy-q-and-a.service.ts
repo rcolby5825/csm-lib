@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export const environment = {
@@ -26,8 +26,17 @@ export class LucyQandAService {
   //     .catch(this.handleError);
   // }
 
+
+  // define the objects going in and out of this function and then tie it to what's listed in the docs.
   postcsmCommands(commands: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmCommands}`, commands).pipe(catchError(err => of('error found'));
+    return this.http.post<any>(`${environment.csmCommands}`, commands)
+
+
+  // addHero(hero: Hero): Observable<Hero> {
+  //   return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
+  //     tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+  //     catchError(this.handleError<Hero>('addHero'))
+  //   );
   }
 
   postcsmSpeech(speech: string[]): Observable<any> {
