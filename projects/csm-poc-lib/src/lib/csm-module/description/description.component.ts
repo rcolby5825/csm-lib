@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import {DescriptionData} from './description.service';
 import {Subscription} from 'rxjs/Subscription';
 import {CSMService} from '../engine/csm.service';
@@ -33,15 +33,12 @@ class UIData {
         }
       });
     }
-    // console.log('Left: ', this.left);
-    // console.log('Center: ', this.center);
-    // console.log('Right: ', this.right);
     return this;
   }
 }
 
 @Component({
-  selector: 'app-description',
+  selector: 'lib-app-description',
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss']
 })

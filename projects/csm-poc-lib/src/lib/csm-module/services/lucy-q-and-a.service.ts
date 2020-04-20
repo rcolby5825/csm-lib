@@ -1,9 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {environment} from '../../../../environments/environment';
-import {throwError} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, of, throwError} from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
+export const environment = {
+  'csmSpeech': 'http://localhost:3200/speech',
+  'csmCommands': 'http://localhost:3200/commands',
+  'csmField': 'http://localhost:3200/field'
+};
 @Injectable()
 export class LucyQandAService {
 
@@ -17,18 +21,17 @@ export class LucyQandAService {
     this.originTabNameRequest = '';
   }
 
-  getAnswers(question: string[]): Observable<any> {
-    return this.http.get<any>(`${environment.LUCYHELP}/${question}`)
-      .catch(this.handleError);
-  }
+  // getAnswers(question: string[]): Observable<any> {
+  //   return this.http.get<any>(`${environment.LUCYHELP}/${question}`)
+  //     .catch(this.handleError);
+  // }
 
   postcsmCommands(commands: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmCommands}`, commands).catch(
-      this.handleError);
+    return this.http.post<any>(`${environment.csmCommands}`, commands).pipe(catchError(err => of('error found'));
   }
 
   postcsmSpeech(speech: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmSpeech}`, speech).catch(
+    return this.http.post<any>(`${environment.csmSpeech}`, speech).pipe(catchError)catchError(
       this.handleError);
   }
 
