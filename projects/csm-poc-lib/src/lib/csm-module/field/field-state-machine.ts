@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {StateMachine} from '../../../../csm-module/state-machine/state-machine';
-import {CSMService} from '../../../../csm-module/engine/csm.service';
-import {FieldAccessorService} from '../../../../adapter-module/interfaces/impl/field-accessor.service';
 import {random} from 'lodash';
-import {Field} from '../../../../model-module/models/field';
-import {FormState} from '../../../../core-module/models/FormState';
 import {each} from 'lodash';
-import {LucyQandAService} from '../../lucy_services/lucy-q-and-a.service';
-import {FieldValidateObject} from '../../../../csm-module/services/mssql-connect.service';
+import {StateMachine} from '../state-machine/state-machine';
+import {CSMService} from '../engine/csm.service';
+import {FieldAccessorService} from './field-accessor.service';
+import {LucyQandAService} from '../services/lucy-q-and-a.service';
+import {FieldValidateObject} from '../services/mssql-connect.service';
+import {Field} from './field';
+import {FormState} from './FormState';
 
 @Injectable()
 /**
@@ -37,189 +37,6 @@ export class FieldStateMachine extends StateMachine {
     public getName(): string {
         return 'Field State Machine';
     }
-
-    public getStateMachine(): any {
-        return {
-            'base': {
-                'voice': 'Google UK English Female',      // The voice is reset to the default in case the voice is changed elsewhere
-                'image': 'afterspeech:lucy_l.png', // The image is reset to the default in case the image is changed elsewhere
-                'actions': [
-                    {
-                        'userSays': ['next', 'skip'],
-                        'computerDoes': [this.next, 'base'],
-                        'example': 'Next'
-                    },
-                    {
-                        'userSays': ['previous'],
-                        'computerDoes': [this.previous],
-                        'example': 'Previous'
-                    },
-                    {
-                        'userSays': ['first'],
-                        'computerDoes': [this.first],
-                        'example': 'First'
-                    },
-                    {
-                        'userSays': ['last'],
-                        'computerDoes': [this.last],
-                        'example': 'Last'
-                    },
-                    {
-                        'userSays': [`change /.+?(?=to)/ to ` + this.AnyWords],
-                        'computerDoes': [`say: Got it.`]
-                    },
-                    {
-                        'userSays': ['[[set,change,edit,modify,update,correct]] [[to,]] ' + this.AnyWords],
-                        'computerDoes': [`function(says) {this.attemptSetValue(says)};`],
-                        'example': 'Change Phone Number'
-                    },
-                    {
-                        'userSays': ['revert [[to,]] ' + this.AnyWords],
-                        'computerDoes': ['function(says) {this.revertValue(says[0])};'],
-                        'example': 'Revert to'
-                    },
-                    {
-                        'userSays': ['title'],
-                        'computerDoes': [this.getTitle],
-                        'example': 'Title'
-                    },
-                    {
-                        'userSays': ['delete', 'remove', 'clear'],
-                        'computerDoes': ['function() {this.fieldAccessorService.setValueOfActiveField("")};'],
-                        'example': 'Delete'
-                    },
-                    {
-                        'userSays': ['current field'],
-                        'computerDoes': [`function() {let value = this.fieldAccessorService.getValue(); if (value.length == 0) value = "blank"; this._csmService.speak(this.fieldAccessorService.getTitle() + " is " + value);};`],
-                        'example': 'Current Field'
-                    },
-                    {
-                        'userSays': ['find next'],
-                        'computerDoes': [`function(say) {this._findIterator.next(); this.fieldAccessorService.focus();};`],
-                        'example': 'Find Next'
-                    },
-                    {
-                        'userSays': ['find last'],
-                        'computerDoes': [`function(say) {this._findIterator.last(); this.fieldAccessorService.focus();};`],
-                        'example': 'Find Last'
-                    },
-                    {
-                        'userSays': ['find previous'],
-                        'computerDoes': [`function(say) {this._findIterator.previous(); this.fieldAccessorService.focus();};`],
-                        'example': 'Find Previous'
-                    },
-                    {
-                        'userSays': ['find first'],
-                        'computerDoes': [`function(say) {this._findIterator.first(); this.fieldAccessorService.focus();};`],
-                        'example': 'Find First'
-                    },
-                    {
-                        'userSays': ['find ' + this.AnyWords],
-                        'computerDoes': [this.find],
-                        'example': 'find'
-                    },
-                    {
-                        'userSays': ['cancel'],
-                        'computerDoes': [`function(say) {this.verbalCompleteSection = false;};`],
-                        'example': 'Cancel'
-                    },
-                    {
-                        'userSays': ['spell military'],
-                        'computerDoes': [`function(say) {this.spell(true);};`],
-                        'example': 'Spell Military'
-                    },
-                    {
-                        'userSays': ['spell'],
-                        'computerDoes': [`function(say) {this.spell(false);};`],
-                        'example': 'Spell'
-                    },
-                    {
-                        'userSays': ['get value'],
-                        'computerDoes': [this.getValue],
-                        'example': 'Get Value'
-                    },
-                    {
-                        'userSays': ['chat with me'],
-                        'computerDoes': ['chatWithMe', `function() {this.registerNotification('mediumLevel', 1); this.registerNotification('highLevel', 2);}`]
-                    },
-                    {
-                        'userSays': ['<speech>'],
-                        'computerDoes': ['function(speech) {this.setValueOfActiveField(speech[0])};'],
-                        'processLast': true
-                    }
-                ]
-            },
-            'mediumLevel': {
-                'computerSays': ['This is medium'],
-                'actions': [
-                    {
-                        'userSays': ['close'],
-                        'computerDoes': ['base']
-                    }
-                ],
-                'responses': {'type': 'Buttons', 'data': ['Close'], 'showTape': true}
-            },
-            'highLevel': {
-                'computerSays': ['This is high'],
-                'actions': [
-                    {
-                        'userSays': ['close'],
-                        'computerDoes': ['base']
-                    }
-                ],
-                'responses': {'type': 'Buttons', 'data': ['Close'], 'showTape': true}
-            },
-            'askForValue': {
-                'computerSays': [this.getAskForValueRespose],
-                'actions': [
-                    {
-                        'userSays': ['<speech>'],
-                        'computerDoes': ['function(speech) {this.setValueOfActiveField(speech[0])};', 'base']
-                    }
-                ]
-            },
-            'chatWithMe': {
-                'computerSays': [`Hi, I'm chatty!`],
-                'actions': [
-                    {
-                        'userSays': ['stop chat'],
-                        'computerDoes': ['say:FINE!', 'base']
-                    },
-                    {
-                        'userSays': ['<speech>'],
-                        'computerDoes': ['chatWithMe']
-                    }
-                ],
-                'responses': {'type': 'TextField', 'data': true}
-            },
-            'StakeHolderWarning': {
-                'computerSays': [this.getStakeHolderWarningMessage],
-                'actions': [
-                    {
-                        'userSays': ['Continue'],
-                        'computerDoes': [`function(says) {this.stakeHolderWarningResult('Continue')};`, 'base']
-                    },
-                    {
-                        'userSays': ['Cancel'],
-                        'computerDoes': [`function(says) {this.stakeHolderWarningResult('Cancel')};`, 'base']
-                    }
-                ],
-                'responses': {'type': 'Buttons', 'data': ['Cancel', 'Continue'], 'showTape': true}
-            },
-            'InitialDependency': {
-                'computerSays': [this.getDependencyMessage],
-                'actions': [
-                    {
-                        'userSays': ['<speech>'],
-                        // 'computerDoes': [this.find, 'base']
-                        'computerDoes': ['function(says){this.find(says);}', 'base']
-                    }
-                ],
-                'responses': {'type': 'Buttons', 'data': ['Close'], 'showTape': true}
-            }
-        };
-    }
-
   /**
    * Sets Value of Active Field
    *
@@ -349,7 +166,8 @@ export class FieldStateMachine extends StateMachine {
             this.fieldAccessorService.focus();
             this.enterState('askForValue');
             return;
-        } else if ((matches = reTargetToValue.exec(says[0])) && (<any> matches).groups && (<any> matches).groups.target && (<any> matches).groups.value) {
+        } else if ((matches = reTargetToValue.exec(says[0])) && (<any> matches).groups &&
+          (<any> matches).groups.target && (<any> matches).groups.value) {
             const target = (<any> matches).groups.target;
             value = (<any> matches).groups.value;
             const found = self.find([target]); // target is the spoken field-title
@@ -539,11 +357,13 @@ export class FieldStateMachine extends StateMachine {
         stakeholderFields = stakeholderFields.reverse();
 
         // Build Lucy text
-        this.stakeHolderMessage = '<p>Changing ' + field.properties.title + ' will invalidate the following. Do you still want to change this field?</p><ul><Mute>';
+        this.stakeHolderMessage = '<p>Changing ' + field.properties.title + ' will invalidate the following. Do' +
+          ' you still want to change this field?</p><ul><Mute>';
         for (let i = 0; i < stakeholderFields.length; i++) {
             const section = stakeholderFields[i].section.properties.title;
             const title = stakeholderFields[i].field.properties.title;
-            this.stakeHolderMessage += `<li>` + section + `&nbsp<span class="fas fa-arrow-right"></span>&nbsp;<strong>` + title + `</strong></li>`;
+            this.stakeHolderMessage += `<li>` + section
+              + `&nbsp<span class="fas fa-arrow-right"></span>&nbsp;<strong>` + title + `</strong></li>`;
         }
         this.stakeHolderMessage += `</Mute></ul>`;
 
@@ -557,7 +377,8 @@ export class FieldStateMachine extends StateMachine {
 
     public showInitialDependencies(components: string[]): void {
         const singular = components.length === 1;
-        this.dependencyMessage = 'There ' + (singular ? 'is ' : 'are ') + components.length + ' required field' + (singular ? '' : 's') + ' that you must complete to initial:<Mute><br>';
+        this.dependencyMessage = 'There ' + (singular ? 'is ' : 'are ') +
+          components.length + ' required field' + (singular ? '' : 's') + ' that you must complete to initial:<Mute><br>';
         for (let i = 0; i < components.length; i++) {
             if (components[i].length > 0) {
                 this.dependencyMessage += `<a>` + components[i] + `</a>`;

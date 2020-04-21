@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import {SocketMessage} from './models/SocketMessage';
+import {SocketMessage} from '../models/SocketMessage';
 
 @Injectable({
   providedIn: 'root'
