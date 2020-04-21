@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, throwError} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
 
 export const environment = {
@@ -26,8 +26,6 @@ export class LucyQandAService {
   //     .catch(this.handleError);
   // }
 
-
-  // define the objects going in and out of this function and then tie it to what's listed in the docs.
   postcsmCommands(commands: string[]): Observable<any> {
     return this.http.post<any>(`${environment.csmCommands}`, commands).pipe(catchError(e => of(e)));
   }
