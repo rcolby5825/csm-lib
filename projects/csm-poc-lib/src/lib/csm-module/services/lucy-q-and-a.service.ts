@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, throwError} from 'rxjs';
+import {catchError} from 'rxjs/internal/operators';
 
 export const environment = {
   'csmSpeech': 'http://localhost:3200/speech',
@@ -29,25 +29,15 @@ export class LucyQandAService {
 
   // define the objects going in and out of this function and then tie it to what's listed in the docs.
   postcsmCommands(commands: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmCommands}`, commands).catch(
-      this.handleError);
-
-
-  // addHero(hero: Hero): Observable<Hero> {
-  //   return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-  //     tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-  //     catchError(this.handleError<Hero>('addHero'))
-  //   );
+    return this.http.post<any>(`${environment.csmCommands}`, commands).pipe(catchError(e => of(e)));
   }
 
   postcsmSpeech(speech: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmSpeech}`, speech).pipe(catchError)catchError(
-      this.handleError);
+    return this.http.post<any>(`${environment.csmSpeech}`, speech).pipe(catchError(e => of(e)));
   }
 
   postcsmField(text: string, regExp: string): Observable<any> {
-    return this.http.post<any>(`${environment.csmField}`, {text, regExp}).catch(
-      this.handleError);
+    return this.http.post<any>(`${environment.csmField}`, {text, regExp}).pipe(catchError(e => of(e)));
   }
 
   private handleError(error: Response | any) {

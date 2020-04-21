@@ -7,6 +7,7 @@
 
 # dependencies
 /node_modules
+package-lock.json
 
 # IDEs and editors
 /.idea
@@ -40,4 +41,3 @@ Thumbs.db
 
 projects/csm-poc-lib/package-lock.json
 projects/csm-poc-lib/node_modules
-*.tgz

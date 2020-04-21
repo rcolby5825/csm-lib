@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
-    "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -45,8 +44,8 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^4.1.0",
     "protractor": "~5.4.0",
-    "rxjs": "^6.3.0",
-    "rxjs-compat": "^6.3.1",
+    "rxjs": "^6.5.5",
+    "rxjs-compat": "^6.5.5",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
