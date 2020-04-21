@@ -29,7 +29,8 @@ export class LucyQandAService {
 
   // define the objects going in and out of this function and then tie it to what's listed in the docs.
   postcsmCommands(commands: string[]): Observable<any> {
-    return this.http.post<any>(`${environment.csmCommands}`, commands)
+    return this.http.post<any>(`${environment.csmCommands}`, commands).catch(
+      this.handleError);
 
 
   // addHero(hero: Hero): Observable<Hero> {

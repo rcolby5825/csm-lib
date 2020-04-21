@@ -1,17 +1,13 @@
 import {Injectable} from '@angular/core';
-import {FieldAccessorInterface} from '../field-accessor.interface';
-import {SchemaPointer} from '../../model/schema.pointer';
-import {StateService} from '../../../core-module/services/state/state.service';
-import {FormState} from '../../../core-module/models/FormState';
-import {NodeStats} from '../../../essentials-module/components/progress-indicators/node-stats';
-import {ErrorService} from '../../../core-module/services/utils/error.service';
-import {MessageType} from '../../../core-module/enums/message-type.enum';
-import {CoreError} from '../../../core-module/models/CoreError';
 import {isNull, isUndefined, has} from 'lodash';
 import {Subscription} from 'rxjs';
-import {DataService} from '../../services/data.service';
-import {Field} from '../../../model-module/models';
-import {FieldType} from '../../../essentials-module/model/enums/field-type.enum';
+import {FieldAccessorInterface} from '../interfaces/field-accessor.interface';
+import {SchemaPointer} from '../interfaces/enum/schema.pointer';
+import {ErrorService} from './error.service';
+import {Field} from './field';
+import {StateService} from './state.service';
+import {FormState} from './FormState';
+import {DataService} from '../services/data.service';
 
 
 @Injectable({
@@ -89,7 +85,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
         self.listenForFormStateChanges();
         if (self.formState) {
             self.schemaPointer = new SchemaPointer(self.formState.getApplication(), self.formState.getApplicationInstanceId());
-            self.listenForServerValidationErrors();
+            // self.listenForServerValidationErrors();
         }
     }
 
@@ -123,24 +119,24 @@ export class FieldAccessorService implements FieldAccessorInterface {
         });
     }
 
-    /**
-     * @description
-     *  listen for server-side generated validation error.
-     *  .properties.validationError
-     */
-    listenForServerValidationErrors() {
-        const self = this;
-        const activeField = self.schemaPointer.getActiveField();
-        self.errorService.validationErrors$.subscribe((error: CoreError) => {
-            const hasNodeError = activeField.id === error.data.node;
-            if (hasNodeError) {
-                const errCode = error.data.errCode;
-                if (errCode === MessageType.VALIDATION_ERROR) {
-                    self.schemaPointer.setActiveFieldValidationError(error.data.messages.toString());
-                }
-            }
-        });
-    }
+    // /**
+    //  * @description
+    //  *  listen for server-side generated validation error.
+    //  *  .properties.validationError
+    //  */
+    // listenForServerValidationErrors() {
+    //     const self = this;
+    //     const activeField = self.schemaPointer.getActiveField();
+    //     self.errorService.validationErrors$.subscribe((error: CoreError) => {
+    //         const hasNodeError = activeField.id === error.data.node;
+    //         if (hasNodeError) {
+    //             const errCode = error.data.errCode;
+    //             if (errCode === MessageType.VALIDATION_ERROR) {
+    //                 self.schemaPointer.setActiveFieldValidationError(error.data.messages.toString());
+    //             }
+    //         }
+    //     });
+    // }
 
 
     /**
@@ -173,7 +169,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
 
     /**
      * Find a field by it title
-     * @param title
+     * @params title
      */
     find(title: string, index: number = 0): boolean {
         let retVal = false;
@@ -302,20 +298,21 @@ export class FieldAccessorService implements FieldAccessorInterface {
     }
 
 
-    /**
-     * @description
-     *   returns true if field is complete
-     *   (including documenets)
-     */
-    isComplete(): boolean {
-        const self = this;
-        if (!self.schemaPointer) {
-            return false;
-        }
-        const activeField = self.schemaPointer.getActiveField();
-        const nodeStats = new NodeStats(self.schemaPointer.getApplicationInstanceId(), activeField);
-        return nodeStats.chartData.percentageCompleted === 100;
-    }
+    // /**
+  //     //  * @description
+  //     //  *   returns true if field is complete
+  //     //  *   (including documenets)
+  //     //  */
+      isComplete(): boolean {
+          const self = this;
+          if (!self.schemaPointer) {
+              return false;
+          }
+          const activeField = self.schemaPointer.getActiveField();
+          // const nodeStats = new NodeStats(self.schemaPointer.getApplicationInstanceId(), activeField);
+         // return nodeStats.chartData.percentageCompleted === 100;
+        return true;
+      }
 
     isEditable(): boolean {
         const self = this;
@@ -344,17 +341,18 @@ export class FieldAccessorService implements FieldAccessorInterface {
         return activeField.properties.required;
     }
 
-    hasElements(): boolean {
-      const self = this,
-        activeFieldType = self.schemaPointer.getActiveField().properties.fieldType,
-        elementFieldTypes = [FieldType.SELECT, FieldType.RADIO, FieldType.CHECKBOX]; // exclude single checkbox for now as the field title may be hidden
-
-      let hasElements = false;
-      if (elementFieldTypes.indexOf(activeFieldType) > -1) {
-        hasElements = true;
-      }
-      return hasElements;
-    }
+    // hasElements(): boolean {
+    //   const self = this,
+    //     activeFieldType = self.schemaPointer.getActiveField().properties.fieldType,
+    //     elementFieldTypes = [FieldType.SELECT, FieldType.RADIO, FieldType.CHECKBOX];
+  // exclude single checkbox for now as the field title may be hidden
+    //
+    //   let hasElements = false;
+    //   if (elementFieldTypes.indexOf(activeFieldType) > -1) {
+    //     hasElements = true;
+    //   }
+    //   return hasElements;
+    // }
 
     reset(): boolean {
         const self = this;
@@ -436,7 +434,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
     }
 
     /**
-    * @function validateSpeech
+    * @functions validateSpeech
     * @description we need to get only the speech validated here and THEN
     * to the validate function below.
     */
@@ -490,7 +488,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
     /**
      * @description if field's properties.disabled is true - do not allow value setting
      * @author Ramsey
-     * @returns {boolean}
+     *
      */
     public activeFieldIsWritable(): boolean {
       let isWritable = true;
