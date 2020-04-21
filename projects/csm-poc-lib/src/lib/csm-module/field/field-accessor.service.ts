@@ -3,11 +3,9 @@ import {isNull, isUndefined, has} from 'lodash';
 import {Subscription} from 'rxjs';
 import {FieldAccessorInterface} from '../interfaces/field-accessor.interface';
 import {SchemaPointer} from '../interfaces/enum/schema.pointer';
-import {ErrorService} from './error.service';
 import {Field} from './field';
 import {StateService} from './state.service';
 import {FormState} from './FormState';
-import {DataService} from '../services/data.service';
 
 
 @Injectable({
@@ -76,7 +74,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
         'Document number': [{'regex': /^\d{9}$/}]
     };
 
-    constructor(private stateService: StateService, private dataService: DataService, private errorService: ErrorService) {
+    constructor(private stateService: StateService) {
         this.init();
     }
 
@@ -341,18 +339,18 @@ export class FieldAccessorService implements FieldAccessorInterface {
         return activeField.properties.required;
     }
 
-    // hasElements(): boolean {
-    //   const self = this,
-    //     activeFieldType = self.schemaPointer.getActiveField().properties.fieldType,
-    //     elementFieldTypes = [FieldType.SELECT, FieldType.RADIO, FieldType.CHECKBOX];
-  // exclude single checkbox for now as the field title may be hidden
-    //
-    //   let hasElements = false;
-    //   if (elementFieldTypes.indexOf(activeFieldType) > -1) {
-    //     hasElements = true;
-    //   }
-    //   return hasElements;
-    // }
+    hasElements(): boolean {
+      const self = this,
+        activeFieldType = self.schemaPointer.getActiveField().properties.fieldType;
+        // elementFieldTypes = [FieldType.SELECT, FieldType.RADIO, FieldType.CHECKBOX];
+        // exclude single checkbox for now as the field title may be hidden
+
+       const hasElements = false;
+      // if (elementFieldTypes.indexOf(activeFieldType) > -1) {
+      //   hasElements = true;
+      // }
+      return hasElements;
+    }
 
     reset(): boolean {
         const self = this;
@@ -387,7 +385,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
         const field = application.getNodesByTitle(fieldTitle)[0];
 
         console.log(`${field.properties.title} value will be set to: ${value}`);
-        self.dataService.processValueChange(field, value);
+        // self.dataService.processValueChange(field, value);
     }
 
     public revertValue(value: string): void {
@@ -396,7 +394,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
         if (!value || value === 'previous' || value === 'value') {
             value = activeField.properties.previousValueData.value;
         }
-        self.dataService.processValueChange(activeField, value);
+        // self.dataService.processValueChange(activeField, value);
     }
 
     /**
@@ -481,7 +479,7 @@ export class FieldAccessorService implements FieldAccessorInterface {
             const activeField = self.schemaPointer.getActiveField();
             // field.properties.value = value;
             console.log(`${activeField.properties.title} value will be set to: ${value}`);
-            self.dataService.processValueChange(activeField, value);
+            // self.dataService.processValueChange(activeField, value);
         }
     }
 
