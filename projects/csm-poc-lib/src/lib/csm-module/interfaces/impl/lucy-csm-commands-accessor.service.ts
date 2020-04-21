@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {LucyMessageService} from '../../../core-module/services/state/lucy-message.service';
 import {Subscription} from 'rxjs';
 import {LucyCSMCommandsInterface} from '../lucy-csm-commands.interface';
+import {LucyMessageService} from '../lucy-message.service';
 
 @Injectable({
   providedIn: 'root'
