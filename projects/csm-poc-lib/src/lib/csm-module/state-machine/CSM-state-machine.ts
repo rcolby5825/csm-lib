@@ -1,13 +1,14 @@
 import {Injectable, NgZone} from '@angular/core';
 import {Router} from '@angular/router';
-import {StateMachine} from '../state-machine/state-machine';
 import {CSMService} from '../engine/csm.service';
-import {SpeechService} from '../../csm-module/engine/speech.service';
-import {CommonComponentServices} from '../avatar/avatar-diagnostic.component';
-import {ApplicationAccessorService} from '../../adapter-module/interfaces/impl/application-accessor.service';
-import {VoiceCommand} from '../../_integration/services/voice/models/voice-command';
-import {LucyCSMCommandsAccessorService} from '../../adapter-module/interfaces/impl/lucy-csm-commands-accessor.service';
-import {LucyCSMCommands} from '../../adapter-module/interfaces/enum/lucy-csm-commands.enum';
+// This will bring in the avatar component - which this isn't ready for yet.
+// import {CommonComponentServices} from '../avatar/avatar-diagnostic.component';
+import {LucyCSMCommands} from '../interfaces/enum/lucy-csm-commands.enum';
+import {LucyCSMCommandsAccessorService} from '../interfaces/impl/lucy-csm-commands-accessor.service';
+import {ApplicationAccessorService} from '../interfaces/impl/application-accessor.service';
+import {StateMachine} from './state-machine';
+import {SpeechService} from '../engine/speech.service';
+
 
 
 @Injectable()
@@ -53,7 +54,7 @@ export class CSMStateMachine extends StateMachine {
 
   constructor(
     _csmService: CSMService,
-    private _compDiagSvcs: CommonComponentServices,
+    // private _compDiagSvcs: CommonComponentServices,
     private _applicationAccessor: ApplicationAccessorService,
     private _SpeechService: SpeechService,
     private _lucyCSMCommandsService: LucyCSMCommandsAccessorService,
@@ -265,8 +266,7 @@ export class CSMStateMachine extends StateMachine {
   }
 
   /**
-     * @function letsGetStarted
-     * @argument none
+     *
      * @returns string (the response for Lucy)
      * @description This is on intial start... where are we LUCY?
      */
@@ -283,24 +283,12 @@ export class CSMStateMachine extends StateMachine {
       moveable1.classList.remove('moveable1visible');
       moveable1.classList.add('moveable1hidden');
     }, 5000);
-
-    // response = "Welcome to Digital Harbor and SET FORMS. I\'m Lucy, your Digital Assistant. Please sign in or speak Go To...Take Me To...Navigate To...or Select...SIGN IN so we can get started.";
     response = 'Welcome to Digital Harbor and SET FORMS. I\'m Lucy, your Digital Assistant.';
     return response;
   }
 
   /**
-   * @function test
-   * @argument none
-   * @returns nothing
-   * @description This method is called when the user says 'test'.
-   */
-  public test(): void {
-    console.log('SolutionStateMachine.test() - Thank you for testing me!');
-  }
-
-  /**
-   * @function search
+   *
    * @argument userSays (string)
    * @returns nothing
    * @description This method is called when the user says 'test'
@@ -414,10 +402,11 @@ export class CSMStateMachine extends StateMachine {
    * Description: Shows the CSM Debug modal.
    * Returns: nothing
    */
-  public showHideCSMModal(fromwhere: string) {
-    // console.log(`**************** Showing modal we're in CSM STATE MACHINE IS: ` + fromwhere);
-    this._compDiagSvcs.showHideCSMModal(fromwhere);
-  }
+  // will need to be migrated out of here into the avatar component
+  // public showHideCSMModal(fromwhere: string) {
+  //   // console.log(`**************** Showing modal we're in CSM STATE MACHINE IS: ` + fromwhere);
+  //   this._compDiagSvcs.showHideCSMModal(fromwhere);
+  // }
 
   public getStatus(): void {
     const status = this._applicationAccessor.getStatus();
@@ -430,7 +419,7 @@ export class CSMStateMachine extends StateMachine {
   }
 
   /**
-   * @function turnOnMic
+   *
    * @description this ensures that the MIC is on
    * @params NONE
    * @returns Nothing
@@ -447,9 +436,9 @@ export class CSMStateMachine extends StateMachine {
 
 
   /**
-   * @function logout
+   *
    * @description logs the user out of set forms
-   * @argument none
+   *
    * @returns nothing
    */
   public gotoPage(keyword: string): void {
@@ -460,7 +449,7 @@ export class CSMStateMachine extends StateMachine {
         info = this.lucyCSMCommands[i].MSG;
         this._lucyCSMCommandsService.setMessage(info);
         this._lucyCSMCommandsService.setPath(this.lucyCSMCommands[i].PATH);
-        this._compDiagSvcs.navigate(this._lucyCSMCommandsService.getPath());
+        // this._compDiagSvcs.navigate(this._lucyCSMCommandsService.getPath());
       }
     }
     // Speak the message
@@ -474,10 +463,6 @@ export class CSMStateMachine extends StateMachine {
     }
 
   }
-
-  //  public getLucyCSMCommands(): VoiceCommand {
-  //    return new VoiceCommand(lucyCSMCommands);
-  //  }
 
   public chatBotOpenClose(whatPage: string): string {
     let msg = '';
@@ -500,11 +485,12 @@ export class CSMStateMachine extends StateMachine {
   }
 
   /**
- * @function openChatBotModal
+ *
  * @description this opens the chatbot modal manually
- * @argument none
+ *
  * @returns nothing
  */
+  // this may not work - try it out and see
   public openChatBot(): void {
     const moveable1: HTMLElement = document.getElementsByClassName('moveable1')[0] as HTMLElement;
     const modalbody: HTMLElement = document.getElementsByClassName('modalbodyoverride')[0] as HTMLElement;
@@ -516,6 +502,7 @@ export class CSMStateMachine extends StateMachine {
     }
   }
 
+  // might not work as it deals directly with the avatar component
   public closeChatBot(): void {
     const moveable1: HTMLElement = document.getElementsByClassName('moveable1')[0] as HTMLElement;
     if (moveable1) {

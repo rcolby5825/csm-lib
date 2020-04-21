@@ -3,7 +3,7 @@ import {throwError} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {isNullOrUndefined} from 'util';
-import {LucyQandAService} from '../../_integration/services/lucy_services/lucy-q-and-a.service';
+import {LucyQandAService} from './lucy-q-and-a.service';
 
 
 export interface LucySpeech {
