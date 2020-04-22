@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CsmPocLibComponent } from './csm-poc-lib.component';
-import { CsmModuleComponent } from './csm-module/csm-module.component';
 import {SpeechService} from './csm-module/engine/speech.service';
 import {StateMachine} from './csm-module/state-machine/state-machine';
 import {CommonModule} from '@angular/common';
@@ -26,7 +24,6 @@ import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
 @NgModule({
   declarations: [
     DescriptionComponent,
-    CsmModuleComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +46,6 @@ import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
     DescriptionService,
     FieldHighlightService,
     ContextInvoker,
-    CsmModuleComponent,
     LanguageParserService,
     InferenceEngineService,
     LucyQandAService,
