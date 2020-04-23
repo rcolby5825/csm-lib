@@ -1,5 +1,6 @@
-import {SocketServerMessage} from '../enums/socket-server-message.enum';
-import {FocusType} from '../enums/focus-type.enum';
+import {SocketServerMessage} from '../enum/socket-server-message.enum';
+import {FocusType} from '../enum/focus-type.enum';
+
 
 type Uuid = string;
 interface ISender {
@@ -9,7 +10,7 @@ interface ISender {
   userId: string;
 }
 /**
- * @interface ITable
+ * @interfaces ITable
  * @description This gives us all the data from the Socket about a table
  */
 interface ITable {

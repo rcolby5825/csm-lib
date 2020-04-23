@@ -25,12 +25,14 @@ import {CsmPocLibComponent} from './csm-poc-lib.component';
 @NgModule({
   declarations: [
     DescriptionComponent,
+    CsmPocLibComponent
   ],
   imports: [
     CommonModule,
   ],
   exports: [
     DescriptionComponent,
+    CsmPocLibComponent
   ],
   providers: [
     CSMService,

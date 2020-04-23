@@ -5,7 +5,7 @@ import {CSMService} from '../engine/csm.service';
 // import {CommonComponentServices} from '../avatar/avatar-diagnostic.component';
 import {LucyCSMCommands} from '../interfaces/enum/lucy-csm-commands.enum';
 import {LucyCSMCommandsAccessorService} from '../interfaces/impl/lucy-csm-commands-accessor.service';
-import {ApplicationAccessorService} from '../interfaces/impl/application-accessor.service';
+// import {ApplicationAccessorService} from '../interfaces/impl/application-accessor.service';
 import {StateMachine} from './state-machine';
 import {SpeechService} from '../engine/speech.service';
 
@@ -55,7 +55,7 @@ export class CSMStateMachine extends StateMachine {
   constructor(
     _csmService: CSMService,
     // private _compDiagSvcs: CommonComponentServices,
-    private _applicationAccessor: ApplicationAccessorService,
+    // private _applicationAccessor: ApplicationAccessorService,
     private _SpeechService: SpeechService,
     private _lucyCSMCommandsService: LucyCSMCommandsAccessorService,
     private router: Router,
@@ -409,13 +409,13 @@ export class CSMStateMachine extends StateMachine {
   // }
 
   public getStatus(): void {
-    const status = this._applicationAccessor.getStatus();
-    this.speak(status, undefined, undefined, this._SpeechService.getEndOfSpeechCallback());
+    // const status = this._applicationAccessor.getStatus();
+    // this.speak(status, undefined, undefined, this._SpeechService.getEndOfSpeechCallback());
   }
 
   public getProgress(): void {
-    const progress = this._applicationAccessor.getStatus();
-    this.speak(progress, undefined, undefined, this._SpeechService.getEndOfSpeechCallback());
+    // const progress = this._applicationAccessor.getStatus();
+    // this.speak(progress, undefined, undefined, this._SpeechService.getEndOfSpeechCallback());
   }
 
   /**
@@ -431,7 +431,7 @@ export class CSMStateMachine extends StateMachine {
   public browseApplications(): void {
     const modalMsg = 'Please choose an application you\'d like to create.';
     this.speak(modalMsg);
-    this._applicationAccessor.openGenericModal();
+    // this._applicationAccessor.openGenericModal();
   }
 
 
