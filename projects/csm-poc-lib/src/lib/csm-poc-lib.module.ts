@@ -20,6 +20,7 @@ import {DescriptionService} from './csm-module/description/description.service';
 import {FieldHighlightService} from './csm-module/description/field-highlight.service';
 import {UtilVoiceService} from './csm-module/engine/util-voice.service';
 import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
+import {CsmPocLibComponent} from './csm-poc-lib.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
     InferenceEngineService,
     LucyQandAService,
     MssqlConnectService,
-    ConversationManager
+    ConversationManager,
+    CsmPocLibComponent
   ],
 })
 export class CsmPocLibModule { }

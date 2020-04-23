@@ -647,7 +647,7 @@ export class StateMachineService implements OnInit, AfterViewInit {
   public accessInputDevice(micstatus: boolean) {
 
     const self = this;
-    window.AudioContext = window.AudioContext;
+    // window.AudioContext = window.AudioContext;
     //    let videoTrack: {stop: () => void;} = null;
     //    // let audioTrack = null;
     //    let videoDefaultConstraintString = '{\n  "width": 320,\n  "height": 240,\n  "frameRate": 30\n}';
@@ -669,7 +669,7 @@ export class StateMachineService implements OnInit, AfterViewInit {
     //      console.log('DeviceID: ', supports);
     //    }
 
-    const context = new AudioContext();
+    // const context = new AudioContext();
     // console.log('Audio Context: ', context);
 
     // initialization
@@ -717,11 +717,11 @@ export class StateMachineService implements OnInit, AfterViewInit {
     // console.log('Success with the Audio Context', status);
     // console.log('Audio Context', stream);
 
-    let AudioContext = window.AudioContext;
+    // let AudioContext = window.AudioContext;
 
-    if (typeof AudioContext === 'undefined' && typeof AudioContext !== 'undefined') {
-      AudioContext = AudioContext;
-    }
+    // if (typeof AudioContext === 'undefined' && typeof AudioContext !== 'undefined') {
+    //   AudioContext = AudioContext;
+    // }
 
     /*global MediaStream: true */
     if (typeof MediaStream !== 'undefined' && !('stop' in MediaStream.prototype)) {
@@ -773,8 +773,8 @@ export class StateMachineService implements OnInit, AfterViewInit {
 
   public gotStream(stream: any) {
     const self = this;
-    window.AudioContext = stream; // make stream available to console
-    self.microphone = stream;
+    // window.AudioContext = stream; // make stream available to console
+    // self.microphone = stream;
 
   }
 

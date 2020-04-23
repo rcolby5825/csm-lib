@@ -39,32 +39,32 @@ export class MssqlConnectService {
   // main server REST api
 
 
-  getLucyHelpAnswer(question: string[]): any {
-
-    // console.log('QUESTION: ', question);
-    // *************** Uncomment out when needed *********************************
-    let mydata;
-    this.lucyHelpResultsSubscription.unsubscribe();
-    this.lucyHelpResultsSubscription = this.lucyQandAService.getAnswers(question).subscribe(
-      (response: any) => {
-
-        this.answers = response;
-
-        if (!isNullOrUndefined(response.length)) {
-          // console.log('RESPONSE: ', response);
-          mydata = response;
-        } else {
-          // console.log('RESPONSE: ', response);
-          mydata = 'Sorry, there was no data for your request.';
-        }
-        return mydata;
-      },
-      (error: any) => {
-        // console.log('ERROR retrieving LUCY CONTENT: ', error);
-        return this.handleError = error;
-      }
-    );
-  }
+  // getLucyHelpAnswer(question: string[]): any {
+  //
+  //   // console.log('QUESTION: ', question);
+  //   // *************** Uncomment out when needed *********************************
+  //   let mydata;
+  //   this.lucyHelpResultsSubscription.unsubscribe();
+  //   this.lucyHelpResultsSubscription = this.lucyQandAService.getAnswers(question).subscribe(
+  //     (response: any) => {
+  //
+  //       this.answers = response;
+  //
+  //       if (!isNullOrUndefined(response.length)) {
+  //         // console.log('RESPONSE: ', response);
+  //         mydata = response;
+  //       } else {
+  //         // console.log('RESPONSE: ', response);
+  //         mydata = 'Sorry, there was no data for your request.';
+  //       }
+  //       return mydata;
+  //     },
+  //     (error: any) => {
+  //       // console.log('ERROR retrieving LUCY CONTENT: ', error);
+  //       return this.handleError = error;
+  //     }
+  //   );
+  // }
 
   postLucyCommands(commands: string []): any {
     this.lucyQandAService.postcsmCommands(commands).subscribe(
