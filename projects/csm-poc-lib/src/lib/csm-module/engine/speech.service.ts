@@ -90,7 +90,8 @@ export class SpeechService {
       utterance.voice = this.fVoiceInstance;
       utterance.pitch = 1;
       utterance.rate = 1;
-      this.fUtteranceCache = utterance; // The utterance is cached so it is not garbage collected. This can assure that onend is not cleared.
+      this.fUtteranceCache = utterance;
+      // The utterance is cached so it is not garbage collected. This can assure that onend is not cleared.
 
       const onEnd = function () {
         // if (this.isDebugFullListeningAndRecognition()) {
@@ -133,7 +134,8 @@ export class SpeechService {
   /**
    * Speak text or array passed as parameter.
    *
-   * @param text - text, or array of text to speak. The array can contain text, or a function that returns text. For example, ['Hi ', sayFirstName]
+   * @param text - text, or array of text to speak. The array can
+   * contain text, or a function that returns text. For example, ['Hi ', sayFirstName]
    * @param responses - ?
    * @param silent - ?
    * @param callback - optional callback function which will be called when speech finishes.
@@ -230,7 +232,8 @@ export class SpeechService {
       utterance.voice = this.fVoiceInstance;
       utterance.pitch = 1;
       utterance.rate = 1;
-      this.fUtteranceCache = utterance; // The utterance is cached so it is not garbage collected. This can assure that onend is not cleared.
+      this.fUtteranceCache = utterance;
+      // The utterance is cached so it is not garbage collected. This can assure that onend is not cleared.
 
       const eofSpeechCb = this.setCallbackAfterSpeech;
       const onEnd = function () {
@@ -438,7 +441,8 @@ export class SpeechService {
         case 'List':
           if (this.fSetListDataManagerCallback) {
             if (responses.data) {
-              const fn = responses.data.bind(this._CSMService.getStateMachineStackService().getStateMachineStateContext());        // Used to do .getThis()
+              const fn = responses.data.bind(this._CSMService.getStateMachineStackService().getStateMachineStateContext());
+              // Used to do .getThis()
               const listDataManager = fn();
               this.fSetListDataManagerCallback(listDataManager);
             }
@@ -622,9 +626,9 @@ export class SpeechService {
   }
 
   /**
-   * @function regForSpeechEnds
+   * @functions regForSpeechEnds
    * @description is Lucy speaking or not
-   * @argument NA
+   * @arguments NA
    * @returns Nothing
    */
   public regForSpeechIsFinished(fCallbackLucySpeaks: Function): void {
@@ -654,7 +658,7 @@ export class SpeechService {
   /**
    * Set speech selection.
    *
-   * @param speech
+   * @params speech
    */
   public setSpeech(speech: string): void {
     this.fSpeech = speech;
@@ -715,9 +719,9 @@ export class SpeechService {
   }
 
   /**
-   * @function resetControls()
+   * @functions resetControls()
    * @description resets all controls so that it can remove the buttons once clicked
-   * @argument none
+   * @arguments none
    * @returns nothing
    */
   public resetControls(): void {

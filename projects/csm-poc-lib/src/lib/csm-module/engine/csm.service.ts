@@ -474,7 +474,7 @@ export class CSMService {
     /**
      * UnRegisters from listening for possible commands.
      *
-     * @param nothing
+     * @params nothing
      * @returns nothing
      */
     public unRegForPossibleCommands() {
@@ -491,9 +491,9 @@ export class CSMService {
     }
 
     /**
-     * @function regForSpeechEnds
+     * @functions regForSpeechEnds
      * @description is Lucy speaking or not
-     * @argument NA
+     * @arguments NA
      * @returns Nothing
      */
     public regForSpeechIsFinished(fCallbackLucySpeaks: Function): void {
