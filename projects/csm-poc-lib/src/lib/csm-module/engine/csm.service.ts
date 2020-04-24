@@ -8,7 +8,6 @@ import {ProcessCommandService} from './process-command.service';
 import {ConversationManager} from '../conversations/conversation.service';
 import {StateMachineService} from './state-machine.service';
 import {StateMachineStackService} from './state-machine-stack.service';
-import {DescriptionService} from '../description/description.service';
 import {LanguageParserService} from './language-parser.service';
 import {StateMachine} from '../state-machine/state-machine';
 
@@ -44,7 +43,6 @@ export class CSMService {
     constructor(
         private _SynonymVoiceService: SynonymVoiceService,
         private _UtilVoiceService: UtilVoiceService,
-        private _DescriptionService: DescriptionService,
         private _LanguageParserService: LanguageParserService,
         private _NLUMatchService: NLUMatchService,
         private _SpeechService: SpeechService,
@@ -85,7 +83,7 @@ export class CSMService {
         const user = this.getUser();
         if (this.fValidUser) {
             enabled = (<any> user).enableAvatar;
-            this._DescriptionService.updateUserAvatarEnable(enabled);
+            // this._DescriptionService.updateUserAvatarEnable(enabled);
         }
 
         // Return result
@@ -150,7 +148,7 @@ export class CSMService {
     public enableSpeaker(): void {
         // Flag that CSM is listening
         this.fSilence = false;
-        this._DescriptionService.updateSpeak(true);
+        // this._DescriptionService.updateSpeak(true);
     }
 
     /**
@@ -159,7 +157,7 @@ export class CSMService {
     public disableSpeaker(): void {
         // Silence CSM
         this.fSilence = true;
-        this._DescriptionService.updateSpeak(false);
+        // this._DescriptionService.updateSpeak(false);
     }
 
     /**
@@ -347,9 +345,9 @@ export class CSMService {
      *
      * @returns DescriptionService
      */
-    public getDescriptionService(): DescriptionService {
-        return this._DescriptionService;
-    }
+    // public getDescriptionService(): DescriptionService {
+    //     return this._DescriptionService;
+    // }
 
     /**
      * Register to be called when final text is determined.

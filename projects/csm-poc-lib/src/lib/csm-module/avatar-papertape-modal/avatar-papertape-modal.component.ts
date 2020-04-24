@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, OnDestroy, Input, ChangeDetectorRef} from '@angular/core';
-import {CSMService} from 'csm-poc-lib/lib/csm-module/engine/csm.service';
+import {CSMService} from '../engine/csm.service';
 
 @Component({
   selector: 'lib-avatar-papertape-modal',

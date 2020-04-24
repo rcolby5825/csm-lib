@@ -1,7 +1,6 @@
 import {Injectable, OnInit, AfterViewInit} from '@angular/core';
 import {CSMService} from './csm.service';
 import {StateMachine} from '../state-machine/state-machine';
-import {DescriptionData} from '../description/description.service';
 import {MssqlConnectService} from '../services/mssql-connect.service';
 import {ProcessCommandService} from './process-command.service';
 
@@ -28,7 +27,6 @@ export class StateMachineService implements OnInit, AfterViewInit {
   private fCacheStateMachineState: string;
   private fCacheStateMachineStateContext: StateMachine;
   private fCacheStateMachineStateName: string;
-  private fCacheDescriptionData: DescriptionData;
   private fCacheCurrentStateMachineCommand: string;
   private fCacheCurrentStateMachineName: string;
 
@@ -36,7 +34,6 @@ export class StateMachineService implements OnInit, AfterViewInit {
   private fThreadStateMachineState: string;
   private fThreadStateMachineStateContext: StateMachine;
   private fThreadStateMachineStateName: string;
-  private fThreadDescriptionData: DescriptionData;
   private fThreadCurrentStateMachineCommand: string;
   private fThreadCurrentStateMachineName: string;
 
@@ -294,13 +291,11 @@ export class StateMachineService implements OnInit, AfterViewInit {
       this._CSMService.getStateMachineStackService().setStateMachineState(this.fCacheStateMachineState);
       this._CSMService.getStateMachineStackService().setStateMachineStateContext(this.fCacheStateMachineStateContext);
       this.fStateMachineIndex = this.fCacheStateMachineIndex;
-      this._CSMService.getDescriptionService().updateData(this.fCacheDescriptionData);
       this.fCurrentStateMachineCommand = this.fCacheCurrentStateMachineCommand;
       this.fCurrentStateMachineName = this.fCacheCurrentStateMachineName;
       this.fCacheStateMachineStateName = undefined;
       this.fCacheStateMachineState = undefined;
       this.fCacheStateMachineIndex = undefined;
-      this.fCacheDescriptionData = undefined;
       this.fCacheCurrentStateMachineCommand = undefined;
       this.fCacheCurrentStateMachineName = undefined;
       this.refreshUpdateStateMachine();
@@ -388,7 +383,6 @@ export class StateMachineService implements OnInit, AfterViewInit {
             this.fThreadStateMachineState = this._CSMService.getStateMachineStackService().getStateMachineState();
             this.fThreadStateMachineStateContext = this._CSMService.getStateMachineStackService().getStateMachineStateContext();
             this.fThreadStateMachineStateName = this._CSMService.getStateMachineStackService().getStateMachineStateName();
-            this.fThreadDescriptionData = this._CSMService.getDescriptionService().getCurrentDescriptionData();
             this.fThreadCurrentStateMachineCommand = this.fCurrentStateMachineCommand;
             this.fThreadCurrentStateMachineName = this.fCurrentStateMachineName;
           }
@@ -438,7 +432,6 @@ export class StateMachineService implements OnInit, AfterViewInit {
           this.fThreadStateMachineState = this._CSMService.getStateMachineStackService().getStateMachineState();
           this.fThreadStateMachineStateContext = this._CSMService.getStateMachineStackService().getStateMachineStateContext();
           this.fThreadStateMachineStateName = this._CSMService.getStateMachineStackService().getStateMachineStateName();
-          this.fThreadDescriptionData = this._CSMService.getDescriptionService().getCurrentDescriptionData();
           this.fThreadCurrentStateMachineCommand = this.fCurrentStateMachineCommand;
           this.fThreadCurrentStateMachineName = this.fThreadCurrentStateMachineName;
         }
@@ -588,15 +581,6 @@ export class StateMachineService implements OnInit, AfterViewInit {
    */
   public getThreadCurrentStateMachineName(): string {
     return this.fThreadCurrentStateMachineName;
-  }
-
-  /**
-   * Get thread description data.
-   *
-   * @returns fThreadDescriptionData
-   */
-  public getThreadDescriptionData(): DescriptionData {
-    return this.fThreadDescriptionData;
   }
 
   /**

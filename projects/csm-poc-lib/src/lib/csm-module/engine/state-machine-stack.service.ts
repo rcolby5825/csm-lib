@@ -113,13 +113,15 @@ export class StateMachineStackService {
    */
   public endThread(): any {
     // Restore state machine values saved in updateStateMachine
-    this._CSMService.getStateMachineService().setCurrentStateMachineIndex(this._CSMService.getStateMachineService().getThreadStateMachineIndex());
+    this._CSMService.getStateMachineService().setCurrentStateMachineIndex(
+      this._CSMService.getStateMachineService().getThreadStateMachineIndex());
     this.fStateMachineState = this._CSMService.getStateMachineService().getThreadStateMachineState();
     this.fStateMachineStateContext = this._CSMService.getStateMachineService().getThreadStateMachineStateContext();
     this.fStateMachineStateName = this._CSMService.getStateMachineService().getThreadStateMachineStateName();
-    this._CSMService.getDescriptionService().updateData(this._CSMService.getStateMachineService().getThreadDescriptionData());
-    this._CSMService.getStateMachineService().setCurrentStateMachineCommand(this._CSMService.getStateMachineService().getThreadCurrentStateMachineCommand());
-    this._CSMService.getStateMachineService().setCurrentStateMachineName(this._CSMService.getStateMachineService().getThreadCurrentStateMachineName());
+    this._CSMService.getStateMachineService().setCurrentStateMachineCommand(
+      this._CSMService.getStateMachineService().getThreadCurrentStateMachineCommand());
+    this._CSMService.getStateMachineService().setCurrentStateMachineName(
+      this._CSMService.getStateMachineService().getThreadCurrentStateMachineName());
 
     // Process state machine command
       return this._CSMService.getProcessCommandService().internalProcessStateMachineCommand();
@@ -137,7 +139,7 @@ export class StateMachineStackService {
   /**
    * Set state machine state.
    *
-   * @param stateMachineState
+   * @params stateMachineState
    */
    public setStateMachineState(stateMachineState: any): void {
        this.fStateMachineState = stateMachineState;
@@ -155,7 +157,7 @@ export class StateMachineStackService {
   /**
    * Set state machine state context.
    *
-   * @param stateMachineStateName
+   * @params stateMachineStateName
    */
    public setStateMachineStateContext(stateMachineStateContext: StateMachine): void {
        this.fStateMachineStateContext = stateMachineStateContext;
@@ -173,7 +175,7 @@ export class StateMachineStackService {
   /**
    * Set state machine state name.
    *
-   * @param stateMachineStateName
+   * @params stateMachineStateName
    */
    public setStateMachineStateName(stateMachineStateName: string): void {
        this.fStateMachineStateName = stateMachineStateName;
