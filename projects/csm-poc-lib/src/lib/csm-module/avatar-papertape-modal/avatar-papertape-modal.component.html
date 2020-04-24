@@ -1,0 +1,29 @@
+<div class="pt-drag-block modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}" ngDraggable ngResizable>
+  <div id="papertapemodal" class="modal-dialog" role="document">
+    <!-- CONTENT -->
+    <div class="modal-content">
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h4 class="modal-title">Papertape Information</h4>
+        <button id="dismiss" type="button" class="close" aria-label="Close" (click)="closePaperTapeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- BODY -->
+      <div class="modal-body">
+        <!-- Start Text -->
+
+        Text goes here...
+
+        <!-- End Text -->
+      </div>
+      <!-- END CONTENT -->
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closePaperTapeModal()">{{closeBtnName}}</button>
+      </div>
+      <!-- END FOOTER -->
+    </div>
+    <!-- END DIALOG -->
+  </div>
+</div>
