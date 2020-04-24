@@ -12,27 +12,25 @@ import {StateMachineService} from './csm-module/engine/state-machine.service';
 import {LanguageParserService} from './csm-module/engine/language-parser.service';
 import {NLUMatchService} from './csm-module/engine/nlu-match.service';
 import {ContextInvoker} from './csm-module/command-pattern/context-invoker';
-import {DescriptionComponent} from './csm-module/description/description.component';
 import {StateMachineStackService} from './csm-module/engine/state-machine-stack.service';
 import {LucyQandAService} from './csm-module/services/lucy-q-and-a.service';
 import {MssqlConnectService} from './csm-module/services/mssql-connect.service';
-import {DescriptionService} from './csm-module/description/description.service';
-import {FieldHighlightService} from './csm-module/description/field-highlight.service';
 import {UtilVoiceService} from './csm-module/engine/util-voice.service';
 import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
 import {CsmPocLibComponent} from './csm-poc-lib.component';
+import {AvatarPapertapeModalComponent} from './csm-module/avatar-papertape-modal/avatar-papertape-modal.component';
 
 @NgModule({
   declarations: [
-    DescriptionComponent,
-    CsmPocLibComponent
+    CsmPocLibComponent,
+    AvatarPapertapeModalComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
-    DescriptionComponent,
-    CsmPocLibComponent
+    CsmPocLibComponent,
+    AvatarPapertapeModalComponent
   ],
   providers: [
     CSMService,
@@ -46,15 +44,12 @@ import {CsmPocLibComponent} from './csm-poc-lib.component';
     StateMachineStackService,
     StateMachine,
     CSMStateMachine,
-    DescriptionService,
-    FieldHighlightService,
     ContextInvoker,
     LanguageParserService,
     InferenceEngineService,
     LucyQandAService,
     MssqlConnectService,
     ConversationManager,
-    CsmPocLibComponent
   ],
 })
 export class CsmPocLibModule { }

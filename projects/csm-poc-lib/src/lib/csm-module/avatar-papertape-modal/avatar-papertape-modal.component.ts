@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit, OnDestroy, Input, ChangeDetectorRef} from '@angular/core';
-import {CSMService} from '../../../csm-module/engine/csm.service';
+import {CSMService} from 'csm-poc-lib/lib/csm-module/engine/csm.service';
 
 @Component({
-  selector: 'app-avatar-papertape-modal',
+  selector: 'lib-avatar-papertape-modal',
   templateUrl: './avatar-papertape-modal.component.html',
   styleUrls: ['./avatar-papertape-modal.component.scss']
 })
@@ -90,7 +90,8 @@ export class AvatarPapertapeModalComponent implements OnInit, OnDestroy, AfterVi
       if (i < resultArray.length) {
         const posStr = resultArray[i++];
         const posInfo = pos[posStr];
-        const html = `<a class='resultstring btn-link' data-toggle='tooltip' data-placement='top' title='${posInfo.description}\n\n${posInfo.example}'><sub>${posStr}</sub></a>`;
+        const html = `<a class='resultstring btn-link' data-toggle='tooltip' data-placement='top'
+                    title='${posInfo.description}\n\n${posInfo.example}'><sub>${posStr}</sub></a>`;
         result += html + resultArray[i];
       }
     }

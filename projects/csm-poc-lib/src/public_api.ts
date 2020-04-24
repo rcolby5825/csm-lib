@@ -5,4 +5,3 @@
 export * from './lib/csm-poc-lib.service';
 export * from './lib/csm-poc-lib.component';
 export * from './lib/csm-poc-lib.module';
-export * from './lib/csm-module/engine/process-command.service';
