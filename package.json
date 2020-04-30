@@ -5,11 +5,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "shortcut": "ng build csm-poc-lib && cd/dist/csm-poc-lib && npm pack",
+    "clean": "rm -r dist && mkdir dist",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build csm-lib": "ng build csm-poc-lib"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

@@ -43,7 +43,6 @@ export class LucyCSMCommandsAccessorService implements LucyCSMCommandsInterface 
    * @arguments:
    * @param for setPath: String
    * @param for getPath: nothing
-   * @returns
    * @returnValue for setPath: nothing
    * @returnValue for getPath: string
    */
@@ -60,7 +59,6 @@ export class LucyCSMCommandsAccessorService implements LucyCSMCommandsInterface 
    * @arguments:
    * @param for setPage: String
    * @param for getPage: nothing
-   * @returns
    * @returnValue for setPage: nothing
    * @returnValue for getPage: string
    */
@@ -77,7 +75,6 @@ export class LucyCSMCommandsAccessorService implements LucyCSMCommandsInterface 
    * @arguments:
    * @param for setMessage: String
    * @param for getMessage: nothing
-   * @returns
    * @returnValue for setMessage: nothing
    * @returnValue for getMessage: string
    */
