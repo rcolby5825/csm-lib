@@ -11,19 +11,23 @@ export * from './lib/csm-poc-lib.module';
 // are touching an outside application.
 
 export * from './lib/csm-module/services/lucy-q-and-a.service';
+// conservation.service isn't being imported correctly
 export * from './lib/csm-module/conversations/conversation.service';
+
 export * from './lib/csm-module/engine/csm.service';
 export * from './lib/csm-module/engine/inference-engine.service';
 export * from './lib/csm-module/engine/language-parser.service';
 export * from './lib/csm-module/engine/process-command.service';
 export * from './lib/csm-module/engine/speech.service';
 export * from './lib/csm-module/state-machine/CSM-state-machine';
+// state-machine had a static injector error when entering
 export * from './lib/csm-module/state-machine/state-machine';
 
 // ones that are being put in - but probably won't be kept in final
 export * from './lib/csm-module/command-pattern/context-invoker';
 export * from './lib/csm-module/services/mssql-connect.service';
 export * from './lib/csm-module/engine/nlu-match.service';
+// state-machine-stack.service had a static injector error when entering
 export * from './lib/csm-module/engine/state-machine-stack.service';
 export * from './lib/csm-module/engine/synonym-voice.service';
 export * from './lib/csm-module/engine/util-voice.service';
