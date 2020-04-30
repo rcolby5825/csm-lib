@@ -1,6 +1,12 @@
 /*
  * Public API Surface of csm-poc-lib
  */
+
+// needed for the csm-poc-lib module to be used
+export * from './lib/csm-poc-lib.service';
+export * from './lib/csm-poc-lib.component';
+export * from './lib/csm-poc-lib.module';
+
 // These may need to be revised to ONLY include the specific methods that
 // are touching an outside application.
 
