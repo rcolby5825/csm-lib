@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "shortcut": "ng build csm-poc-lib && cd/dist/csm-poc-lib && npm pack",
+    "shortcut": "ng build csm-poc-lib && cd dist/csm-poc-lib && npm pack",
     "clean": "rm -r dist && mkdir dist",
     "build": "ng build",
     "test": "ng test",
