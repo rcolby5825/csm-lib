@@ -19,18 +19,21 @@ import {UtilVoiceService} from './csm-module/engine/util-voice.service';
 import {CSMStateMachine} from './csm-module/state-machine/CSM-state-machine';
 import {CsmPocLibComponent} from './csm-poc-lib.component';
 import {AvatarPapertapeModalComponent} from './csm-module/avatar-papertape-modal/avatar-papertape-modal.component';
+import {DescriptionComponent} from './csm-module/description/description.component';
 
 @NgModule({
   declarations: [
     CsmPocLibComponent,
-    AvatarPapertapeModalComponent
+    AvatarPapertapeModalComponent,
+    DescriptionComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
     CsmPocLibComponent,
-    AvatarPapertapeModalComponent
+    AvatarPapertapeModalComponent,
+    DescriptionComponent,
   ],
   providers: [
     CSMService,

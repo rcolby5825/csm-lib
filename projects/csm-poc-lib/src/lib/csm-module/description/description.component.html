@@ -1,0 +1,51 @@
+<div
+  *ngIf="bubbleEnable"
+  class="description">
+
+  <div class="description__avatar">
+
+    <div class="description__actions">
+
+      <button
+        *ngIf="enable"
+        type="button"
+        class="description__button"
+        (click)=stopStateMachine()
+        title="Disable avatar help">
+        <span class="far fa-user"></span>
+      </button>
+
+      <button
+        *ngIf="!enable"
+        type="button"
+        class="description__button"
+        (click)=startStateMachine()
+        title="Enable avatar help">
+        <span class="far fa-user-slash"></span>
+      </button>
+
+      <button
+        *ngIf="speak"
+        type="button"
+        class="description__button"
+        (click)=mute()
+        title="Disable avatar speak">
+        <span class="fas fa-volume-up"></span>
+      </button>
+
+      <button
+        *ngIf="!speak"
+        type="button"
+        class="description__button"
+        (click)=unmute()
+        title="Enable avatar speak">
+        <span class="fas fa-volume-mute"></span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="description__content"
+    [innerHTML]="description">
+  </div>
+</div>
